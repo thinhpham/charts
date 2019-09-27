@@ -104,6 +104,16 @@ spec:
           containerPort: 80
         - name: https
           containerPort: 443
+        startupProbe:
+          httpGet:
+            path: /index.php
+            port: http
+            httpHeaders:
+            - name: Host
+              value: {{ include "host" . | quote }}
+          failureThreshold: 30
+          periodSeconds: 60
+          timeoutSeconds: 10
         livenessProbe:
           httpGet:
             path: /index.php
@@ -111,7 +121,10 @@ spec:
             httpHeaders:
             - name: Host
               value: {{ include "host" . | quote }}
+          failureThreshold: 3
           initialDelaySeconds: 300
+          periodSeconds: 30
+          timeoutSeconds: 15
         readinessProbe:
           httpGet:
             path: /index.php
@@ -119,7 +132,10 @@ spec:
             httpHeaders:
             - name: Host
               value: {{ include "host" . | quote }}
+          failureThreshold: 3
           initialDelaySeconds: 60
+          periodSeconds: 30
+          timeoutSeconds: 15
         resources:
 {{ toYaml .Values.resources | indent 10 }}
         volumeMounts:
