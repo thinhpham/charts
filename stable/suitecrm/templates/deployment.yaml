@@ -111,8 +111,8 @@ spec:
             httpHeaders:
             - name: Host
               value: {{ include "host" . | quote }}
-          initialDelaySeconds: 300
-          failureThreshold: 60
+          initialDelaySeconds: 600
+          failureThreshold: 180
           periodSeconds: 60
           timeoutSeconds: 30
         readinessProbe:
@@ -122,8 +122,8 @@ spec:
             httpHeaders:
             - name: Host
               value: {{ include "host" . | quote }}
-          initialDelaySeconds: 300
-          failureThreshold: 60
+          initialDelaySeconds: 600
+          failureThreshold: 180
           periodSeconds: 60
           timeoutSeconds: 30
         resources:
