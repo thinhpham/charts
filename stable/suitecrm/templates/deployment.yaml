@@ -111,9 +111,9 @@ spec:
             httpHeaders:
             - name: Host
               value: {{ include "host" . | quote }}
-          failureThreshold: 90
-          periodSeconds: 30
-          timeoutSeconds: 15
+          failureThreshold: 60
+          periodSeconds: 60
+          timeoutSeconds: 30
         livenessProbe:
           httpGet:
             path: /index.php
@@ -121,10 +121,10 @@ spec:
             httpHeaders:
             - name: Host
               value: {{ include "host" . | quote }}
-          initialDelaySeconds: 1800
-          failureThreshold: 3
-          periodSeconds: 30
-          timeoutSeconds: 15
+          initialDelaySeconds: 300
+          failureThreshold: 60
+          periodSeconds: 60
+          timeoutSeconds: 30
         readinessProbe:
           httpGet:
             path: /index.php
@@ -132,10 +132,10 @@ spec:
             httpHeaders:
             - name: Host
               value: {{ include "host" . | quote }}
-          initialDelaySeconds: 1800
-          failureThreshold: 3
-          periodSeconds: 30
-          timeoutSeconds: 15
+          initialDelaySeconds: 300
+          failureThreshold: 60
+          periodSeconds: 60
+          timeoutSeconds: 30
         resources:
 {{ toYaml .Values.resources | indent 10 }}
         volumeMounts:
