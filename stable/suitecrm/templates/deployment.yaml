@@ -104,16 +104,6 @@ spec:
           containerPort: 80
         - name: https
           containerPort: 443
-        startupProbe:
-          httpGet:
-            path: /index.php
-            port: http
-            httpHeaders:
-            - name: Host
-              value: {{ include "host" . | quote }}
-          failureThreshold: 60
-          periodSeconds: 60
-          timeoutSeconds: 30
         livenessProbe:
           httpGet:
             path: /index.php
