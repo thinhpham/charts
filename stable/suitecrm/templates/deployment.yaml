@@ -113,8 +113,8 @@ spec:
               value: {{ include "host" . | quote }}
           initialDelaySeconds: 600
           failureThreshold: 180
-          periodSeconds: 60
-          timeoutSeconds: 30
+          periodSeconds: 90
+          timeoutSeconds: 60
         readinessProbe:
           httpGet:
             path: /index.php
@@ -124,8 +124,8 @@ spec:
               value: {{ include "host" . | quote }}
           initialDelaySeconds: 600
           failureThreshold: 180
-          periodSeconds: 60
-          timeoutSeconds: 30
+          periodSeconds: 90
+          timeoutSeconds: 60
         resources:
 {{ toYaml .Values.resources | indent 10 }}
         volumeMounts:
